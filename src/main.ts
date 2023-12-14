@@ -29,7 +29,6 @@ app.use((req, res, next) => {
     res.header('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
   
     if (req.method === 'OPTIONS') {
-      // Pre-flight 요청에 대한 응답
       res.sendStatus(200);
     } else {
       next();
@@ -56,7 +55,7 @@ app.use('/auth/login',loginRouter);
 
 process.on('uncaughtException', (err) => {
     console.error('Uncaught exception:', err);
-    // 서버를 안전하게 종료하거나 다른 조치를 취할 수 있습니다.
+    
 });
 
 app.get('/test',(req,res) => {

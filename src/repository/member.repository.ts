@@ -2,6 +2,7 @@ import e from 'express';
 import { CustomError } from '../utils/api.utils';
 import pool from '../utils/database.utils';
 import { RowDataPacket } from 'mysql2';
+import { client } from '../utils/redis.utils';
 
 type Member =  {
     id: string,

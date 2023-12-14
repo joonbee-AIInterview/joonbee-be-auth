@@ -52,7 +52,7 @@ router.get('/refresh', asyncErrorHandler(
             res.json(apiResponse);
         }catch(error){
             console.error(error);
-            throw new CustomError('리프레시 토큰 만료되었습니다.',401);
+            throw new CustomError('리프레시 토큰 만료되었습니다.',403);
         }
     }
 ));
