@@ -14,8 +14,10 @@ const app = express();
 const PORT = 3000;
 const redisChannel: string = process.env.SUBSCRIBE_CHANNEL as string;
 
-client.subscribe(redisChannel, (memberId) => {
-    SseService.sendNotificationToAuthor(memberId);
+client.subscribe(redisChannel, (data) => {
+    console.log(data);
+    const objData = JSON.parse(data);
+    SseService.sendNotificationToAuthor(objData);
 });
 
 app.use((req, res, next) => {

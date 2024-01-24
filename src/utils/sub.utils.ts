@@ -2,6 +2,11 @@ import { ApiResponse } from './api.utils';
 import { client } from './redis.utils';
 import { Response, response } from 'express';
 
+interface LikeForm{
+    interviewId: number;
+    memberId: string;
+}
+
 class SseService {
 
     private static instance: SseService;
@@ -39,10 +44,10 @@ class SseService {
         }
     }
 
-    static async sendNotificationToAuthor(memberId: string){
-        const authorClients: Response = this.clientMap.get(memberId) as Response;
+    static async sendNotificationToAuthor(objData: LikeForm){
+        const authorClients: Response = this.clientMap.get(objData.memberId) as Response;
         if(authorClients){
-            authorClients.write("LIKE");
+            authorClients.write(JSON.stringify(objData));
         }
     }
 }

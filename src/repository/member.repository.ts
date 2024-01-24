@@ -33,17 +33,16 @@ export class UserRepository {
         }
     }
 
-    async existMember(id: string, email: string): Promise<boolean>{
+    async existMember(id: string): Promise<boolean>{
         const client = await pool.getConnection();
 
        try{
-            const query = `SELECT count(*) as cnt, nick_name as nickName FROM member WHERE id = ? AND email = ?`;
-            const [rows] = await client.query(query, [id, email]) as RowDataPacket[];
+            const query = `SELECT count(*) as cnt, nick_name as nickName FROM member WHERE id = ?`;
+            const [rows] = await client.query(query, [id]) as RowDataPacket[];
             
             const count = rows[0].cnt;
-            const nickName = rows[0].nickName;
             console.log(rows);
-            return count && nickName;
+            return count;
             
         }catch(err){
             console.error(err);

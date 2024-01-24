@@ -21,7 +21,7 @@ export const generateToken = async (payload: Payload): Promise<ResponseToken> =>
     const accessToken: string = jwt.sign({joonbee : payload.id}, TOKEN_KEY, { 'expiresIn' : '1h' } );
     const refreshToken: string = jwt.sign({joonbee : payload.id}, TOKEN_KEY, { 'expiresIn' : '1d' } );
     
-    const existMemberData: boolean = await userRepository.existMember(payload.id, payload.email);
+    const existMemberData: boolean = await userRepository.existMember(payload.id);
 
     // 사용자 데이터가 존재하지 않을시 예외 발생시킴
     if(!existMemberData){
