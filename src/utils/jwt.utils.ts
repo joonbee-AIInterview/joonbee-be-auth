@@ -10,7 +10,8 @@ export interface Payload { // 구현 다 되면 사용예쩡
     email: string,
     password: string,
     thumbnail: string,
-    loginType: string
+    loginType: string,
+    joonbee?:string
 }
 
 export const generateToken = async (payload: Payload): Promise<ResponseToken> => { 
