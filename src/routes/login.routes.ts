@@ -62,7 +62,7 @@ router.get('/refresh', asyncErrorHandler(
  */
 router.get('/events', asyncErrorHandler(
     async (req: Request, res: Response) => {
-        const token = req.cookies.joonbee_token;
+        const token = req.cookies['joonbee-token'];
         console.log(token);
         if(!token) throw new CustomError('TOKEN EMPTY',401);
         try{

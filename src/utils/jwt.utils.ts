@@ -1,5 +1,5 @@
 import { UserRepository } from './../repository/member.repository';
-import jwt from 'jsonwebtoken';
+import jwt, { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
 import { CustomError, ResponseToken } from './api.utils';
 import { client as redisClient }  from './redis.utils';
 
@@ -61,6 +61,11 @@ export const verifyToken = (token: string): Payload | null => {
         const decoded = jwt.verify(token, TOKEN_KEY) as Payload;
         return decoded;
     } catch (error) {
+        if(error instanceof TokenExpiredError){
+            throw new CustomError('토큰이 만료되었습니다.', 401);
+        }else if(error instanceof JsonWebTokenError){
+            throw new CustomError('토큰이 변조되었습니다.', 401);
+        }
         console.error("Token verification failed:", error);
         return null;
     }
