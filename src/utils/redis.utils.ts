@@ -10,8 +10,6 @@ client.on('error', (err) => {
     console.error('Redis Error ',err);
 });
 
-
-
 // REDIS 비동기
 // export const setAsync = promisify(client.setEx).bind(client);
 // export const getAsync = promisify(client.get).bind(client);
