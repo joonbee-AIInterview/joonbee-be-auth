@@ -62,13 +62,13 @@ router.get('/refresh', asyncErrorHandler(
  */
 router.get('/events', asyncErrorHandler(
     async (req: Request, res: Response) => {
-        const token = req.cookies['joonbee-token'];
-        if(!token) throw new CustomError('TOKEN EMPTY',401);
+        // const token = req.cookies['joonbee-token'];
+        // if(!token) throw new CustomError('TOKEN EMPTY',401);
         try{
-           const payload: Payload = verifyToken(token) as Payload;
-           const memberId: string = payload.joonbee!;
+        //    const payload: Payload = verifyToken(token) as Payload;
+        //    const memberId: string = payload.joonbee!;
 
-            // const memberId: string = req.query.memberId as string;
+            const memberId: string = req.query.memberId as string;
             console.log(memberId);
             SseService.serverEventResponse(memberId, res);
 

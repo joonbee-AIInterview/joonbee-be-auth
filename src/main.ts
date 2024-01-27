@@ -11,7 +11,7 @@ import cookieParser from 'cookie-parser';
 
 
 const app = express();
-const PORT = 3000;
+const PORT = 3005;
 const redisChannel: string = process.env.SUBSCRIBE_CHANNEL as string;
 
 client.subscribe(redisChannel, (data) => {
@@ -57,7 +57,6 @@ app.use('/auth/login',loginRouter);
 
 process.on('uncaughtException', (err) => {
     console.error('Uncaught exception:', err);
-    
 });
 
 app.get('/test',(req,res) => {
