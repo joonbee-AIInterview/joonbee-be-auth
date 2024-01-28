@@ -41,7 +41,7 @@ class SseService {
                 this.clientMap.delete(memberId);
             });
         }else{
-            response.send('NOT');
+            response.write('NOT');
         }
     }
 
@@ -49,7 +49,7 @@ class SseService {
         const { memberId, ...rest } = objData;
         const authorClients: Response = this.clientMap.get(memberId) as Response;
         if(authorClients){
-            authorClients.write(JSON.stringify(rest));
+            authorClients.write(`data: ${JSON.stringify(rest)}\n\n`);
         }
     }
 }
