@@ -18,8 +18,8 @@ router.get('/callback', asyncErrorHandler(
             data: '성공'
         }
         
-        res.cookie('joonbee-token', authToken.accessToken, { httpOnly: false, sameSite: 'none', secure: true , domain: '.joonbee.co.kr'});
-        res.cookie('joonbee-token-refresh', authToken.refreshToken, { httpOnly: true, sameSite: 'none', secure: true, domain: '.joonbee.co.kr' });
+        res.cookie('joonbee-token', authToken.accessToken, { httpOnly: false, sameSite: 'none', secure: true });
+        res.cookie('joonbee-token-refresh', authToken.refreshToken, { httpOnly: true, sameSite: 'none', secure: true });
         res.json(response);
     }
 ));

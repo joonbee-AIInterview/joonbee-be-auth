@@ -11,7 +11,7 @@ import cookieParser from 'cookie-parser';
 
 
 const app = express();
-const PORT = 3005;
+const PORT = 3000;
 const redisChannel: string = process.env.SUBSCRIBE_CHANNEL as string;
 
 client.subscribe(redisChannel, (data) => {

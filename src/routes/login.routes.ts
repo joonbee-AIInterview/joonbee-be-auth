@@ -59,6 +59,8 @@ router.get('/refresh', asyncErrorHandler(
 
 /**
  * @TODO 쿠키에서 값을 빼는 방식으로 바꿔야함 현재는 테스트를 위해서 파라미터에서 뺴는 중임
+ * 
+ * @deprecated 백로그
  */
 router.get('/events', asyncErrorHandler(
     async (req: Request, res: Response) => {
@@ -77,6 +79,19 @@ router.get('/events', asyncErrorHandler(
         }
     }
 ));
+
+router.get('/logout', asyncErrorHandler(
+    async (req: Request, res: Response) => {
+
+        res.cookie('joonbee-token', '', {expires: new Date(0)});
+        res.cookie('joonbee-token-refresh', '', {expires: new Date(0)});
+
+        const apiResponse: ApiResponse<string> = {
+            status: 200,
+            data: '성공'
+        }
+    }
+))
 
 
 
