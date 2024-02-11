@@ -33,7 +33,7 @@ export class UserRepository {
         }
     }
 
-    async existMember(id: string): Promise<boolean>{
+    async existMember(id: string): Promise<{ exists: boolean, nickName: boolean }>{
         const client = await pool.getConnection();
 
        try{
@@ -42,7 +42,11 @@ export class UserRepository {
             
             const count = rows[0].cnt;
             console.log(rows);
-            return count;
+
+            return {
+                exists: count > 0,
+                nickName: rows[0].nickName
+            }
             
         }catch(err){
             console.error(err);

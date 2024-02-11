@@ -51,12 +51,13 @@ export const naverAuthentication = async (code: string) : Promise<ResponseToken>
 
 const handleNullCheck = (payLoad: JWT.Payload): JWT.Payload => {
     if(payLoad.id == null ) throw new CustomError('id 존재하지 않음', 401);
-    
     return {
-        id : payLoad.id !== null ? payLoad.id : 'NONE',
-        email : payLoad.email !== null ? payLoad.email : 'NONE',
-        password : payLoad.password !== null ? payLoad.password : 'NONE',
-        thumbnail : payLoad.thumbnail !== null ? payLoad.thumbnail : 'NONE', 
+        id : payLoad.id ? payLoad.id : 'NONE',
+        email : payLoad.email ? payLoad.email : 'NONE',
+        password : payLoad.password ? payLoad.password : 'NONE',
+        thumbnail : payLoad.thumbnail ? payLoad.thumbnail : 'NONE', 
         loginType: 'NAVER'
     };
 }
+
+
