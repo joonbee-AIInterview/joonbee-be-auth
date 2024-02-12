@@ -90,6 +90,8 @@ router.get('/logout', asyncErrorHandler(
             status: 200,
             data: '성공'
         }
+
+        res.json(apiResponse);
     }
 ))
 

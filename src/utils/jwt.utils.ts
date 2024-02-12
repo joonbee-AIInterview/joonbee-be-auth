@@ -33,7 +33,7 @@ export const generateToken = async (payload: Payload): Promise<ResponseToken> =>
         throw new CustomError(payload.id,410);
     }
 
-    if(!existMemberData.nickName) throw new CustomError('NickName is NULL', 410);
+    if(!existMemberData.nickName) throw new CustomError(payload.id, 410);
 
     const responseToken: ResponseToken = {
         accessToken, refreshToken
